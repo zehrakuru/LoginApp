@@ -3,6 +3,7 @@ package com.example.loginui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.loginui.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,10 +17,20 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view);
 
-        binding.btnLogin.setOnClickListener {
-            val newIntent = Intent(this@MainActivity, SuccessLoginActivity::class.java)
-            startActivity(newIntent)
+        fun String.isEmailValid() = any { it in "@" } && any { it in "." }
+
+        binding.btnRegister.setOnClickListener {
+            val email = binding.editTextEmail.text.toString()
+            if(!email.isEmailValid()){
+                Toast.makeText(this@MainActivity, "Email is invalid!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val newIntent = Intent(this@MainActivity, SuccessLoginActivity::class.java)
+                startActivity(newIntent)
+            }
         }
+
+
 
         binding.tvRegister.setOnClickListener {
             val newIntent = Intent(this@MainActivity, RegisterActivity::class.java)
