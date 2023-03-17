@@ -32,12 +32,15 @@ class RegisterActivity : AppCompatActivity() {
             } else {
 
                 val pwd = binding.textPassword.text.toString()
+                val name = binding.editTextName.text.toString()
+                val username = binding.editTextUsername.text.toString()
 
                 if (pwd.isLongEnough() && pwd.hasEnoughDigits() && pwd.isMixedCase() && pwd.hasSpecialChar()) {
-                    Toast.makeText(this@RegisterActivity, "Password is valid! Please log into your account.", Toast.LENGTH_SHORT).show()
-                    val newIntent = Intent(this@RegisterActivity, MainActivity::class.java)
-                    newIntent.putExtra("password", pwd)
-                    newIntent.putExtra("email", email)
+                    Toast.makeText(this@RegisterActivity, "Password is valid!", Toast.LENGTH_SHORT).show()
+                    val newIntent = Intent(this@RegisterActivity, FormActivity::class.java)
+                    newIntent.putExtra("name", name)
+                    //newIntent.putExtra("email", email)
+                    newIntent.putExtra("username", username)
                     startActivity(newIntent)
                 } else {
                     Toast.makeText(this@RegisterActivity, "Password is invalid!", Toast.LENGTH_LONG).show()

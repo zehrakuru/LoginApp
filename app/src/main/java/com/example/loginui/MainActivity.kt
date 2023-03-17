@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view);
 
+        //for email validation
         fun String.isEmailValid() = any { it in "@" } && any { it in "." }
 
         binding.btnRegister.setOnClickListener {
